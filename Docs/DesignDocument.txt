@@ -19,3 +19,8 @@ Architecture
 * Another project for `Services`, where all of the logic will live
 * Create a `UnitTest` (name TBD) project to test all the logic in `Services`
 * Another project to store all the models, as this is not a large project 
+
+Assumptions
+---
+* Data is big enough to store in memory for caching
+* There will be a lot of requests and because of the data size it is faster to cache the data and filter it than getting filtered data every time
