@@ -26,18 +26,18 @@ namespace ApiTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigureMvc(services);
-
+            Configure(services);
             SetupDi(services);
         }
 
-        private static void SetupDi(IServiceCollection services)
+        private void SetupDi(IServiceCollection services)
         {
             ServicesDi.SetupDependencyInjection(services);
         }
 
-        private static void ConfigureMvc(IServiceCollection services)
+        private void Configure(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

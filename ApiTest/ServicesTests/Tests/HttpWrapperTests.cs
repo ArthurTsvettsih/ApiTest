@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Services.Http;
+using ServicesTests.Builders;
+using ServicesTests.Fixtures;
 
 namespace ServicesTests.Tests
 {
@@ -13,10 +15,9 @@ namespace ServicesTests.Tests
         [Test]
         public void WhenPassedInvalidUrl_ThrowsArgumentException()
         {
-            // This is the only thing we can test as a unit. Everything else is an integration test
-
             // Arrange
-            var sut = new HttpWrapper<string>();
+            var memoryCache = new MemoryCacheBuilder().Build();
+            var sut = new HttpWrapperFixture<string>(memoryCache).Build();
 
             // Act + Assert
             Assert.ThrowsAsync<ArgumentException>(async () => await sut.MakeHttpCall(Guid.NewGuid().ToString()));
