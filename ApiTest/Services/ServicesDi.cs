@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Services.Albums;
+using Services.Http;
 using Services.Photos;
 
 namespace Services
@@ -13,6 +14,7 @@ namespace Services
         {
             services.AddTransient<IAlbumsService, AlbumsService>();
             services.AddTransient<IPhotosService, PhotosService>();
+            services.AddTransient(typeof(IHttpWrapper<>), typeof(HttpWrapper<>));
         }
     }
 }
