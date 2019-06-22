@@ -18,15 +18,12 @@ namespace ApiTest.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Album>> Get()
-        {
-            return await _albumsService.GetAlbums();
-        }
-
-        [HttpGet("{id}")]
         public async Task<List<Album>> Get(int userId)
         {
-            return await _albumsService.GetAlbumsByUserId(userId);
+            if (userId == 0)
+                return await _albumsService.GetAlbums();
+            else
+                return await _albumsService.GetAlbumsByUserId(userId);
         }
     }
 }
