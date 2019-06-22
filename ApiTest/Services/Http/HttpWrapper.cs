@@ -24,7 +24,7 @@ namespace Services.Http
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var rawResponse = response.Content.ReadAsStringAsync().Result;
+                    var rawResponse = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<T>(rawResponse);
                 }
             }

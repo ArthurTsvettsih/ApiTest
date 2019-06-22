@@ -8,7 +8,7 @@ using Services.Albums;
 
 namespace ApiTest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/albums")]
     [ApiController]
     public class AlbumsController : ControllerBase
     {
@@ -26,9 +26,9 @@ namespace ApiTest.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<List<Album>> Get(int id)
+        public async Task<List<Album>> Get(int userId)
         {
-            return await _albumsService.GetAlbumsByUserId();
+            return await _albumsService.GetAlbumsByUserId(userId);
         }
     }
 }
