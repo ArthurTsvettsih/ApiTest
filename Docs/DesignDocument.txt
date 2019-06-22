@@ -1,0 +1,20 @@
+Problem
+---
+Users want to use our API as middleware to get data from two endpoints from `http://jsonplaceholder.typicode.com`. Namely `/photos` and `/albums`.
+
+Requirements
+---
+* 1 API endpoint that combines the results of `/photos` and `/albums`
+* Allow users to filter the result by a single `user id` on the `albums` object
+
+Approach
+---
+* Use REST API and create 2 endpoints:
+	1. `/api/albums`, which returns all albums
+	1. `/api/:userId/albums`, which returns all albums specific to that user
+	
+Architecture
+---
+* User one project for the `API`, which will act as a communications layer
+* Another project for `Services`, where all of the logic will live
+* Create a `UnitTest` (name TBD) project to test all the logic in `Services`
