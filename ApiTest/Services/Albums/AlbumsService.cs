@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 using Services.Http;
+using Services.Mappers;
 using Services.Photos;
 
 namespace Services.Albums
@@ -13,11 +14,13 @@ namespace Services.Albums
     {
         private readonly IHttpWrapper<List<Album>> _httpWrapper;
         private readonly IPhotosService _photosService;
+        private readonly IMapper<Album, Photo> _mapper;
 
-        public AlbumsService(IHttpWrapper<List<Album>> httpWrapper, IPhotosService photosService)
+        public AlbumsService(IHttpWrapper<List<Album>> httpWrapper, IPhotosService photosService, IMapper<Album, Photo> mapper)
         {
             _httpWrapper = httpWrapper;
             _photosService = photosService;
+            _mapper = mapper;
         }
 
         public async Task<List<Album>> GetAlbums()
@@ -26,7 +29,7 @@ namespace Services.Albums
             var albums = await _httpWrapper.MakeHttpCall("http://jsonplaceholder.typicode.com/albums");
             var photos = await _photosService.GetPhotos();
 
-            var result = MapPhotos(albums, photos);
+            var result = _mapper.MapItems(albums, photos);
 
             return result;
         }
@@ -36,12 +39,6 @@ namespace Services.Albums
             var allAlbums = await GetAlbums();
 
             return allAlbums.Where(x => x.UserId == userId).ToList();
-        }
-
-        private List<Album> MapPhotos(List<Album> albums, List<Photo> photos)
-        {
-
-            return albums;
         }
     }
 }
