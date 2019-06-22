@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using Services.Albums;
 
 namespace ApiTest.Controllers
 {
@@ -10,16 +12,23 @@ namespace ApiTest.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly IAlbumsService _albumsService;
+
+        public AlbumsController(IAlbumsService albumsService)
         {
-            return new string[] { "value1", "value2" };
+            _albumsService = albumsService;
+        }
+
+        [HttpGet]
+        public async Task<List<Album>> Get()
+        {
+            return await _albumsService.GetAlbums();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<List<Album>> Get(int id)
         {
-            return "value";
+            return await _albumsService.GetAlbumsByUserId();
         }
     }
 }
