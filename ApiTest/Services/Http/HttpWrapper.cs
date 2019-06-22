@@ -12,7 +12,7 @@ namespace Services.Http
     {
         public async Task<T> MakeHttpCall(string url)
         {
-            if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 throw new ArgumentException($"{nameof(url)} is an invalid Uri. {nameof(url)} - {url}");
 
             using (var client = new HttpClient())
