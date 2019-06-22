@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Services
+namespace Services.Http
 {
-    public interface IHttpWrapper
+    public class HttpWrapper : IHttpWrapper
     {
     }
 }

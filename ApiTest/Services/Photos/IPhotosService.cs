@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Models;
 
-namespace Services
+namespace Services.Photos
 {
     public interface IPhotosService
     {

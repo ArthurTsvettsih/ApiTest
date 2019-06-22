@@ -18,3 +18,4 @@ Architecture
 * User one project for the `API`, which will act as a communications layer
 * Another project for `Services`, where all of the logic will live
 * Create a `UnitTest` (name TBD) project to test all the logic in `Services`
+* Another project to store all the models, as this is not a large project 

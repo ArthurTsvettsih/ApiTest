@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Services;
 
 namespace ApiTest
 {
@@ -24,6 +25,18 @@ namespace ApiTest
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
+        {
+            ConfigureMvc(services);
+
+            SetupDi(services);
+        }
+
+        private static void SetupDi(IServiceCollection services)
+        {
+            ServicesDi.SetupDependencyInjection(services);
+        }
+
+        private static void ConfigureMvc(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
