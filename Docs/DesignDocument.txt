@@ -9,17 +9,18 @@ Requirements
 
 Approach
 ---
-* Use REST API and create 2 endpoints:
-	1. `/api/albums?userId`, which returns all albums and takes a userId to filter by
-	
+* Use REST API and create one endpoint:
+    1. `/api/albums?userId`, which returns all albums and takes a userId to filter by
+    
 Architecture
 ---
-* User one project for the `API`, which will act as a communications layer
+* Use one project for the `API`, which will act as a communications layer
 * Another project for `Services`, where all of the logic will live
 * Create a `UnitTest` (name TBD) project to test all the logic in `Services`
 * Another project to store all the models, as this is not a large project 
 
 Assumptions
 ---
-* Data is big enough to store in memory for caching
-* There will be a lot of requests and because of the data size it is faster to cache the data and filter it than getting filtered data every time
+* Data is not too big and can be stored in memory for caching
+* Date will not be changed often, therefore, it is valid to cache it for a few minutes at a time
+* There will be many requests and because of the data size it is faster to cache the data and filter it than getting filtered data every time

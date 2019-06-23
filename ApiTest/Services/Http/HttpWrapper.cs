@@ -21,6 +21,7 @@ namespace Services.Http
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 throw new ArgumentException($"{nameof(url)} is an invalid Uri. {nameof(url)} - {url}");
 
+            // Caching should be done on Services layer, however as we are only making 2 API calls it's okay to cache it here for brevity
             if (!_cache.TryGetValue(url, out T cached))
             {
                 cached = await MakeHttpCallForCaching(url);

@@ -12,11 +12,19 @@ namespace Services
         public static void SetupDependencyInjection(IServiceCollection services)
         {
             //TODO AT: Add DI tests
+            RegisterServices(services);
+            RegisterMappers(services);
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
             services.AddTransient<IAlbumsService, AlbumsService>();
             services.AddTransient<IPhotosService, PhotosService>();
             services.AddTransient(typeof(IHttpWrapper<>), typeof(HttpWrapper<>));
-            
-            //TODO AT: This should be generic. Maybe a factory?
+        }
+
+        private static void RegisterMappers(IServiceCollection services)
+        {
             services.AddTransient(typeof(IMapper<Album, Photo>), typeof(AlbumMapper));
         }
     }
